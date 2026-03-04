@@ -854,7 +854,7 @@ namespace RegExpressWPFNET
                 {
 
                     if( CurrentTab == null ) return false;
-                    CurrentTab.ucPattern.SetText( block.Code );
+                    RtbUtilities.SetText( CurrentTab.ucPattern.rtb, block.Code ); //not using CurrentTab.ucPattern.SetText as we want to preserve undo buffer
                     return true;
                 } )
                 {

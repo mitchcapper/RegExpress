@@ -21,7 +21,7 @@
 
     <ItemGroup>
       <PackageReference Include="MdXaml" Version="1.27.0" />
-      <PackageReference Include="Microsoft.SemanticKernel" Version="1.67.1" />
+      <PackageReference Include="Microsoft.SemanticKernel" Version="1.72.0" />
     </ItemGroup>
 
     <ItemGroup>
