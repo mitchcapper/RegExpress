@@ -2,7 +2,7 @@
 
 set Configuration=%~1
 set Platform=%~2
-set TargetDir=net9.0-windows7.0
+set TargetDir=net10.0-windows7.0
 
 set ThisCmdPath=%~dp0
 
@@ -18,12 +18,12 @@ rem echo %TargetDir%
 
 rem -- .NET 9 --
 
-set BasePath=%SolutionDir%\RegexEngines\DotNET9
-xcopy /D /R /Y "%BasePath%\DotNET9Plugin\bin\%Configuration%\%TargetDir%\DotNET9Plugin.dll" "%EnginesTargetPath%\DotNET9\*"
-xcopy /D /R /Y "%BasePath%\DotNET9Worker\bin\%Configuration%\net9.0-windows7.0\DotNET9Worker.dll" "%EnginesTargetPath%\DotNET9\Worker\*"
-xcopy /D /R /Y "%BasePath%\DotNET9Worker\bin\%Configuration%\net9.0-windows7.0\DotNET9Worker.exe" "%EnginesTargetPath%\DotNET9\Worker\*.bin"
-xcopy /D /R /Y "%BasePath%\DotNET9Worker\bin\%Configuration%\net9.0-windows7.0\DotNET9Worker.deps.json" "%EnginesTargetPath%\DotNET9\Worker\*"
-xcopy /D /R /Y "%BasePath%\DotNET9Worker\bin\%Configuration%\net9.0-windows7.0\DotNET9Worker.runtimeconfig.json" "%EnginesTargetPath%\DotNET9\Worker\*"
+set BasePath=%SolutionDir%\RegexEngines\DotNETModern
+xcopy /D /R /Y "%BasePath%\DotNETModernPlugin\bin\%Configuration%\%TargetDir%\DotNETModernPlugin.dll" "%EnginesTargetPath%\DotNETModern\*"
+xcopy /D /R /Y "%BasePath%\DotNETModernWorker\bin\%Configuration%\net10.0-windows7.0\DotNETModernWorker.dll" "%EnginesTargetPath%\DotNETModern\Worker\*"
+xcopy /D /R /Y "%BasePath%\DotNETModernWorker\bin\%Configuration%\net10.0-windows7.0\DotNETModernWorker.exe" "%EnginesTargetPath%\DotNETModern\Worker\*.bin"
+xcopy /D /R /Y "%BasePath%\DotNETModernWorker\bin\%Configuration%\net10.0-windows7.0\DotNETModernWorker.deps.json" "%EnginesTargetPath%\DotNETModern\Worker\*"
+xcopy /D /R /Y "%BasePath%\DotNETModernWorker\bin\%Configuration%\net10.0-windows7.0\DotNETModernWorker.runtimeconfig.json" "%EnginesTargetPath%\DotNETModern\Worker\*"
 
 
 rem -- .NET Framework 4.8 --

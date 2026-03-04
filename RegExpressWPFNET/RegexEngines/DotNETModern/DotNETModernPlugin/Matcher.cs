@@ -113,7 +113,7 @@ namespace DotNET8Plugin
         {
             string assembly_location = Assembly.GetExecutingAssembly( ).Location;
             string assembly_dir = Path.GetDirectoryName( assembly_location )!;
-            string worker_exe = Path.Combine( assembly_dir, "Worker", @"DotNET9Worker.bin" );
+            string worker_exe = Path.Combine( assembly_dir, "Worker", @"DotNETModernWorker.bin" );
 
             return worker_exe;
         }

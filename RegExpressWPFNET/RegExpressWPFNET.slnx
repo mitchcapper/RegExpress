@@ -26,11 +26,11 @@
   <Folder Name="/RegexEngines/D/">
     <Project Path="RegexEngines/D/DPlugin/DPlugin.csproj" />
   </Folder>
-  <Folder Name="/RegexEngines/DotNET9/">
-    <Project Path="RegexEngines/DotNET9/DotNET9Plugin/DotNET9Plugin.csproj">
-      <BuildDependency Project="RegexEngines/DotNET9/DotNET9Worker/DotNET9Worker.csproj" />
+  <Folder Name="/RegexEngines/DotNETModern/">
+    <Project Path="RegexEngines/DotNETModern/DotNETModernPlugin/DotNETModernPlugin.csproj">
+      <BuildDependency Project="RegexEngines/DotNETModern/DotNETModernWorker/DotNETModernWorker.csproj" />
     </Project>
-    <Project Path="RegexEngines/DotNET9/DotNET9Worker/DotNET9Worker.csproj" />
+    <Project Path="RegexEngines/DotNETModern/DotNETModernWorker/DotNETModernWorker.csproj" />
   </Folder>
   <Folder Name="/RegexEngines/DotNETFramework4_8/">
     <Project Path="RegexEngines/DotNETFramework4_8/DotNETFrameworkPlugin/DotNETFrameworkPlugin.csproj">
@@ -131,6 +131,7 @@
   <Folder Name="/Solution Items/">
     <File Path="../README.md" />
     <File Path="../RegexFeatureMatrix.xlsx" />
+    <File Path="Directory.Build.props" />
   </Folder>
   <Project Path="RegExpressCppLibrary/RegExpressCppLibrary.vcxproj" Id="0a96a479-5737-4d64-8f1a-2cc87ca675e2" />
   <Project Path="RegExpressLibrary/RegExpressLibrary.csproj" />
@@ -144,8 +145,8 @@
     <BuildDependency Project="RegexEngines/CompileTimeRegex/CompileTimeRegexPlugin/CompileTimeRegexPlugin.csproj" />
     <BuildDependency Project="RegexEngines/CppBuilder/CppBuilderPlugin/CppBuilderPlugin.csproj" />
     <BuildDependency Project="RegexEngines/D/DPlugin/DPlugin.csproj" />
-    <BuildDependency Project="RegexEngines/DotNET9/DotNET9Plugin/DotNET9Plugin.csproj" />
-    <BuildDependency Project="RegexEngines/DotNET9/DotNET9Worker/DotNET9Worker.csproj" />
+    <BuildDependency Project="RegexEngines/DotNETModern/DotNETModernPlugin/DotNETModernPlugin.csproj" />
+    <BuildDependency Project="RegexEngines/DotNETModern/DotNETModernWorker/DotNETModernWorker.csproj" />
     <BuildDependency Project="RegexEngines/DotNETFramework4_8/DotNETFrameworkPlugin/DotNETFrameworkPlugin.csproj" />
     <BuildDependency Project="RegexEngines/DotNETFramework4_8/DotNETFrameworkWorker/DotNETFrameworkWorker.csproj" />
     <BuildDependency Project="RegexEngines/Fortran/FortranPlugin/FortranPlugin.csproj" />
