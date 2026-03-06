@@ -199,6 +199,16 @@ namespace RegExpressWPFNET
         }
 
 
+        public void RefreshForThemeChange( )
+        {
+            if( !AlreadyLoaded ) return;
+
+            RecolouringLoop.SignalWaitAndExecute( );
+            LocalUnderliningLoop.SignalWaitAndExecute( );
+            ExternalUnderliningLoop.SignalWaitAndExecute( );
+        }
+
+
         public IReadOnlyList<Segment> GetUnderliningInfo( )
         {
             if( LastMatches == null )

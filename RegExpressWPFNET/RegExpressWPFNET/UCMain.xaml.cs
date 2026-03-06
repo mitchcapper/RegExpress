@@ -227,9 +227,17 @@ namespace RegExpressWPFNET
         }
 
 
+        public void SetThemeMode( ThemeMode themeMode )
+        {
+            themeControlToggle.CurrentTheme = themeMode;
+        }
+
+
         private void UserControl_Loaded( object sender, RoutedEventArgs e )
         {
             if( IsFullyLoaded ) return;
+
+            SetThemeMode( Application.Current.ThemeMode );
 
             CurrentRegexEngine = DefaultRegexEngine;
             SetEngineOption( CurrentRegexEngine );
@@ -289,6 +297,8 @@ namespace RegExpressWPFNET
 
             if( true.Equals( e.NewValue ) && IsFullyLoaded )
             {
+                SetThemeMode( Application.Current.ThemeMode );
+
                 if( InitialTabData != null )
                 {
                     StopAll( );
@@ -1199,6 +1209,19 @@ namespace RegExpressWPFNET
                     MessageBox.Show( $"Error reading file: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error );
                 }
             }
+        }
+
+        private void ThemeToggleControl_ThemeChanged( object sender, WPFNativeThemeToggleControl.ThemeChangedEventArgs e )
+        {
+            if( !IsFullyLoaded ) return;
+            if( IsInChange ) return;
+
+            Application.Current.ThemeMode = e.NewTheme;
+
+            ucText.RefreshForThemeChange( );
+            ucMatches.RefreshForThemeChange( );
+
+            Changed?.Invoke( this, EventArgs.Empty );
         }
     }
 }

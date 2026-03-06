@@ -2,7 +2,7 @@
 
 set Configuration=%~1
 set Platform=%~2
-set TargetDir=net10.0-windows7.0
+set TargetDir=net10.0-windows
 
 set ThisCmdPath=%~dp0
 

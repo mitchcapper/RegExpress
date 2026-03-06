@@ -7,6 +7,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows;
 
 
 namespace RegExpressWPFNET.Code
@@ -40,6 +41,7 @@ namespace RegExpressWPFNET.Code
         public List<TabData> Tabs { get; set; } = new( );
         public PilotAIAssistantControl.AIUserConfig AIConfig { get; set; } = new( );
         public bool AITabOpen { get; set; } = false;
+        public string? ThemeModeName { get; set; }
     }
 
 

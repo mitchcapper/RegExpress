@@ -143,6 +143,11 @@ namespace RegExpressWPFNET
 
             tabControl.Items.Remove( tabInitial );
 
+            if( all_tab_data != null )
+            {
+                Application.Current.ThemeMode = GetSavedThemeMode( all_tab_data );
+            }
+
             if( all_tab_data == null || !all_tab_data.Tabs.Any( ) )
             {
                 // No saved data
@@ -454,6 +459,12 @@ namespace RegExpressWPFNET
         }
 
 
+        static ThemeMode GetSavedThemeMode( AllTabData allTabData )
+        {
+            return String.IsNullOrWhiteSpace( allTabData.ThemeModeName ) ? ThemeMode.System : new ThemeMode( allTabData.ThemeModeName );
+        }
+
+
         void SaveAllTabData( )
         {
             try
@@ -472,6 +483,7 @@ namespace RegExpressWPFNET
 
                 all_data.AIConfig =  ucAi.ExportData( );
                 all_data.AITabOpen = ucAi.IsExpanded;
+                all_data.ThemeModeName = Application.Current.ThemeMode.Value;
 
                 string json = JsonSerializer.Serialize( all_data, PluginLoader.JsonOptions );
                 string my_file = GetMyDataFile( );
@@ -687,6 +699,8 @@ namespace RegExpressWPFNET
                 Width = double.NaN,
                 Height = double.NaN
             };
+
+            uc_main.SetThemeMode( Application.Current.ThemeMode );
 
             new_tab_item.Content = uc_main;
             if (insertAt == -1)

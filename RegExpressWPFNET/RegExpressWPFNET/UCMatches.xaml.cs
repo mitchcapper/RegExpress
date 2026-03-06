@@ -295,6 +295,16 @@ namespace RegExpressWPFNET
         }
 
 
+        public void RefreshForThemeChange( )
+        {
+            if( !AlreadyLoaded ) return;
+
+            ShowMatchesLoop.SignalWaitAndExecute( );
+            LocalUnderliningLoop.SignalWaitAndExecute( );
+            ExternalUnderliningLoop.SignalWaitAndExecute( );
+        }
+
+
         public UnderlineInfo GetUnderlinedSegments( )
         {
             RegexMatches matches;

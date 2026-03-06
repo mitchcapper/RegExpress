@@ -7,8 +7,10 @@
         mc:Ignorable="d"
         Width="800"
         Height="450"
+        xmlns:ThemeToggle="clr-namespace:WPFNativeThemeToggleControl;assembly=WPFNativeThemeToggleControl"
         Loaded="UserControl_Loaded"
         Unloaded="UserControl_Unloaded"
+             
         IsVisibleChanged="UserControl_IsVisibleChanged"
         >
 
@@ -146,11 +148,14 @@
                     <StackPanel Grid.Column="0" Style="{StaticResource StackPanelWithLabels}">
                         <TextBlock Text="Options" Style="{StaticResource Labels}"/>
                     </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
+                    <ThemeToggle:ThemeToggleControl x:Name="themeControlToggle" Margin="5,0" ThemeChanged="ThemeToggleControl_ThemeChanged" />
                     <CheckBox x:Name="chbxWrap" Grid.Column="1" Content="Wrap" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 2 0" Checked="ChbxWrap_Checked" Unchecked="ChbxWrap_Unchecked">
                         <CheckBox.LayoutTransform>
                             <ScaleTransform ScaleX="0.8" ScaleY="0.8"/>
                         </CheckBox.LayoutTransform>
                     </CheckBox>
+                    </StackPanel>
                 </Grid>
 
                 <Border Grid.Row="1" Style="{StaticResource RtbBorder}" Margin="2" Padding="2">
@@ -182,7 +187,7 @@
                                                     <ColumnDefinition />
                                                 </Grid.ColumnDefinitions>
                                                 <TextBlock Grid.Column="0" Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="1 0 0 0"/>
-                                                <TextBlock Grid.Column="1" Text="{Binding Version, TargetNullValue='Unknown version', FallbackValue='Unknown version'}" VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                <TextBlock Grid.Column="1" Text="{Binding Version, TargetNullValue='Unknown version', FallbackValue='Unknown version'}" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="{DynamicResource TextFillColorSecondaryBrush}"
                                                            Margin="6 0 1 0">
                                                     <!--<TextBlock.LayoutTransform>
                                                         <ScaleTransform ScaleX="0.8" ScaleY="1"/>
@@ -221,7 +226,7 @@
                                             Show whitespaces
                                             <Span x:Name="lblWarnings">
                                                 <Run x:Name="lblWhitespaceWarning1" Foreground="OrangeRed" ToolTip="There are imperceptible whitespaces. Click to show.">&#x26a0;</Run>
-                                                <Run x:Name="lblWhitespaceWarning2" Foreground="Silver" ToolTip="There are imperceptible whitespaces.">&#x26a0;</Run>
+                                                <Run x:Name="lblWhitespaceWarning2" Foreground="{DynamicResource TextFillColorTertiaryBrush}" ToolTip="There are imperceptible whitespaces.">&#x26a0;</Run>
                                             </Span>
                                     </TextBlock>
                                 </CheckBox>

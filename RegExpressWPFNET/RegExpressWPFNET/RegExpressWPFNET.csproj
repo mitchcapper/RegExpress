@@ -4,6 +4,7 @@
         <OutputType>WinExe</OutputType>
         <Nullable>enable</Nullable>
         <UseWPF>true</UseWPF>
+        <NoWarn>$(NoWarn);WPF0001</NoWarn>
         <LangVersion>preview</LangVersion>
         <ApplicationIcon>RegExpress.ico</ApplicationIcon>
         <ApplicationManifest>app.manifest</ApplicationManifest>
@@ -20,8 +21,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="MdXaml" Version="1.27.0" />
-      <PackageReference Include="Microsoft.SemanticKernel" Version="1.72.0" />
+      <PackageReference Include="WPFNativeThemeToggleControl" Version="1.0.21" />
     </ItemGroup>
 
     <ItemGroup>

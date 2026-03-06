@@ -94,14 +94,24 @@ namespace RegExpressWPFNET.Code
 
         public static TextRange Style( this TextRange range, StyleInfo styleInfo )
         {
+
             foreach( var style_info in styleInfo.Values )
             {
-                range.ApplyPropertyValue( style_info.prop, style_info.val );
+                range.ApplyPropertyValue( style_info.prop, ResolvePossibleDynamicResource( style_info.val ) );
             }
 
             return range;
         }
+        private static object ResolvePossibleDynamicResource( object value )
+        {
 
+            if( value is DynamicResourceExtension dre )
+            {
+                value = Application.Current.TryFindResource( dre.ResourceKey )
+                        ?? throw new InvalidOperationException( $"Missing resource: {dre.ResourceKey}" );
+            }
+            return value;
+        }
 
         public static TextRange Style( this TextRange range, params StyleInfo[] styleInfos )
         {
@@ -118,7 +128,7 @@ namespace RegExpressWPFNET.Code
         {
             foreach( var style_info in styleInfo.Values )
             {
-                inline.SetValue( style_info.prop, style_info.val );
+                inline.SetValue( style_info.prop, ResolvePossibleDynamicResource(style_info.val) );
             }
 
             return inline;
@@ -477,7 +487,7 @@ namespace RegExpressWPFNET.Code
 
             if( rect_to_bring.IsEmpty )
             {
-                InternalConfig.HandleOtherCriticalError("Rect is empty");
+                InternalConfig.HandleOtherCriticalError( "Rect is empty" );
 
                 return;
             }
@@ -490,7 +500,7 @@ namespace RegExpressWPFNET.Code
         {
             if( rect.IsEmpty )
             {
-                InternalConfig.HandleOtherCriticalError("Rect is empty");
+                InternalConfig.HandleOtherCriticalError( "Rect is empty" );
 
                 return;
             }

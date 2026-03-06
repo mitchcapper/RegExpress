@@ -17,7 +17,6 @@
                 <ResourceDictionary Source="pack://application:,,,/PresentationFramework.Fluent;component/Themes/Fluent.xaml" />
             </ResourceDictionary.MergedDictionaries>
        <local_controls:BoolNullVisibilityCollapsedConverter x:Key="boolNullVisibilityCollapsedConverter" />
-       <SolidColorBrush x:Key="NormalBackground" Color="White"/>
 
         <Style x:Key="StackPanelWithLabels" TargetType="StackPanel" PresentationOptions:Freeze="True">
             <Setter Property="Orientation" Value="Horizontal"/>
@@ -47,12 +46,12 @@
         <Style x:Key="RtbBorder" TargetType="Border">
             <Setter Property="CornerRadius" Value="4"/>
             <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="BorderBrush" Value="LightGray"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource ControlStrokeColorDefaultBrush}"/>
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="Padding" Value="0"/>
         </Style>
 
-        <Style TargetType="RichTextBox" PresentationOptions:Freeze="True">
+        <Style TargetType="RichTextBox">
             <Setter Property="FontFamily" Value="Courier New"/>
             <Setter Property="FontSize" Value="16"/>
             
@@ -63,8 +62,9 @@
             <Setter Property="TextOptions.TextHintingMode" Value="Fixed"/>
             <Setter Property="TextOptions.TextRenderingMode" Value="ClearType"/>
 
-            <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="Background" Value="{StaticResource NormalBackground}"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}"/>
+            <Setter Property="CaretBrush" Value="{DynamicResource TextFillColorPrimaryBrush}"/>
+            <Setter Property="Background" Value="{DynamicResource SolidBackgroundFillColorBaseBrush}"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="BorderBrush" Value="Transparent"/>
             <Setter Property="HorizontalScrollBarVisibility" Value="Auto"/>
@@ -99,22 +99,22 @@
             <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
         </Style>
 
-        <Style x:Key="Matches" TargetType="RichTextBox" BasedOn="{StaticResource {x:Type RichTextBox}}" PresentationOptions:Freeze="True">
-            <Setter Property="Background" Value="WhiteSmoke"/>
+        <Style x:Key="Matches" TargetType="RichTextBox" BasedOn="{StaticResource {x:Type RichTextBox}}">
+            <Setter Property="Background" Value="{DynamicResource CardBackgroundFillColorSecondaryBrush}"/>
         </Style>
 
-        <Style x:Key="Error" TargetType="RichTextBox" BasedOn="{StaticResource {x:Type RichTextBox}}" PresentationOptions:Freeze="True">
+        <Style x:Key="Error" TargetType="RichTextBox" BasedOn="{StaticResource {x:Type RichTextBox}}">
             <Setter Property="FontFamily" Value="Courier New"/>
             <Setter Property="FontWeight" Value="Regular"/>
             <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="Background" Value="Pink"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}"/>
+            <Setter Property="Background" Value="{DynamicResource SystemFillColorCriticalBackgroundBrush}"/>
             <Setter Property="Padding" Value="1 4 0 0"/>
         </Style>
 
-        <Style x:Key="Info" TargetType="RichTextBox" BasedOn="{StaticResource {x:Type RichTextBox}}" PresentationOptions:Freeze="True">
+        <Style x:Key="Info" TargetType="RichTextBox" BasedOn="{StaticResource {x:Type RichTextBox}}">
             <Setter Property="FontFamily" Value="Segoe UI"/>
-            <Setter Property="Foreground" Value="Gray"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextFillColorSecondaryBrush}"/>
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="FontStyle" Value="Italic"/>
             <Setter Property="Padding" Value="1 4 0 0"/>
@@ -167,121 +167,121 @@
         </LinearGradientBrush>
 
 
-        <Style x:Key="PatternNormal" TargetType="TextBlock" PresentationOptions:Freeze="True">
-            <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="Background" Value="White"/>
+        <Style x:Key="PatternNormal" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}"/>
+            <Setter Property="Background" Value="Transparent"/>
             <Setter Property="FontWeight" Value="Normal"/>
         </Style>
 
-        <Style x:Key="PatternParaHighlight" TargetType="TextBlock" PresentationOptions:Freeze="True">
+        <Style x:Key="PatternParaHighlight" TargetType="TextBlock">
             <Setter Property="Foreground" Value="Turquoise"/>
-            <Setter Property="Background" Value="#99FAEBD7"/>
+            <Setter Property="Background" Value="{DynamicResource SubtleFillColorSecondaryBrush}"/>
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
 
-        <Style x:Key="PatternGroupName" TargetType="TextBlock" PresentationOptions:Freeze="True">
-            <Setter Property="Foreground" Value="DarkCyan"/>
-            <Setter Property="Background" Value="White"/>
+        <Style x:Key="PatternGroupName" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#00AAAA"/>
+            <Setter Property="Background" Value="Transparent"/>
             <Setter Property="FontWeight" Value="Normal"/>
         </Style>
 
-        <Style x:Key="PatternCharacterClass" TargetType="TextBlock" PresentationOptions:Freeze="True">
-            <Setter Property="Foreground" Value="#0073FF"/>
-            <Setter Property="Background" Value="White"/>
+        <Style x:Key="PatternCharacterClass" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#3399FF"/>
+            <Setter Property="Background" Value="Transparent"/>
             <Setter Property="FontWeight" Value="Regular"/>
         </Style>
 
-        <Style x:Key="PatternCharacterClassBracket" TargetType="TextBlock" PresentationOptions:Freeze="True">
-            <Setter Property="Foreground" Value="#0073FF"/>
-            <Setter Property="Background" Value="White"/>
+        <Style x:Key="PatternCharacterClassBracket" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#3399FF"/>
+            <Setter Property="Background" Value="Transparent"/>
             <Setter Property="FontWeight" Value="Regular"/>
         </Style>
 
-        <Style x:Key="PatternCharacterClassBracketHighlight" TargetType="TextBlock" PresentationOptions:Freeze="True">
-            <Setter Property="Foreground" Value="#0073FF"/>
-            <Setter Property="Background" Value="#99FAEBD7"/>
+        <Style x:Key="PatternCharacterClassBracketHighlight" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#3399FF"/>
+            <Setter Property="Background" Value="{DynamicResource SubtleFillColorSecondaryBrush}"/>
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
 
-        <Style x:Key="PatternCurlyBraceHighlight" TargetType="TextBlock" PresentationOptions:Freeze="True">
+        <Style x:Key="PatternCurlyBraceHighlight" TargetType="TextBlock">
             <Setter Property="Foreground" Value="Fuchsia"/>
-            <Setter Property="Background" Value="#99FAEBD7"/>
+            <Setter Property="Background" Value="{DynamicResource SubtleFillColorSecondaryBrush}"/>
             <Setter Property="FontWeight" Value="Normal"/>
         </Style>
 
-        <Style x:Key="PatternCharacterEscape" TargetType="TextBlock" PresentationOptions:Freeze="True">
-            <Setter Property="Foreground" Value="#9E5BA2"/>
-            <Setter Property="Background" Value="White"/>
+        <Style x:Key="PatternCharacterEscape" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#B07DB5"/>
+            <Setter Property="Background" Value="Transparent"/>
             <Setter Property="FontWeight" Value="Normal"/>
         </Style>
 
-        <Style x:Key="PatternEscape" TargetType="TextBlock" PresentationOptions:Freeze="True">
-            <Setter Property="Foreground" Value="Brown"/>
+        <Style x:Key="PatternEscape" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#CC7832"/>
             <!-- AntiqueWhite: #FFFAEBD7 -->
-            <Setter Property="Background" Value="White"/>
+            <Setter Property="Background" Value="Transparent"/>
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
 
-        <Style x:Key="PatternQuotedSequence" TargetType="TextBlock" PresentationOptions:Freeze="True">
-            <Setter Property="Foreground" Value="DarkViolet"/>
-            <Setter Property="Background" Value="White"/>
+        <Style x:Key="PatternQuotedSequence" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#B07DD8"/>
+            <Setter Property="Background" Value="Transparent"/>
             <Setter Property="FontWeight" Value="Normal"/>
         </Style>
 
-        <Style x:Key="PatternComment" TargetType="TextBlock" PresentationOptions:Freeze="True">
-            <Setter Property="Foreground" Value="#FF009000"/>
-            <Setter Property="Background" Value="White"/>
+        <Style x:Key="PatternComment" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#6A9955"/>
+            <Setter Property="Background" Value="Transparent"/>
             <Setter Property="FontWeight" Value="Normal"/>
         </Style>
 
-        <Style x:Key="PatternQuantifier" TargetType="TextBlock" PresentationOptions:Freeze="True">
+        <Style x:Key="PatternQuantifier" TargetType="TextBlock">
             <Setter Property="Foreground" Value="Fuchsia"/>
-            <Setter Property="Background" Value="White"/>
+            <Setter Property="Background" Value="Transparent"/>
             <Setter Property="FontWeight" Value="Normal"/>
         </Style>
 
-        <Style x:Key="PatternAnchor" TargetType="TextBlock" PresentationOptions:Freeze="True">
+        <Style x:Key="PatternAnchor" TargetType="TextBlock">
             <Setter Property="Foreground" Value="Fuchsia"/>
-            <Setter Property="Background" Value="White"/>
+            <Setter Property="Background" Value="Transparent"/>
             <Setter Property="FontWeight" Value="Normal"/>
         </Style>
 
-        <Style x:Key="PatternSymbol" TargetType="TextBlock" PresentationOptions:Freeze="True">
+        <Style x:Key="PatternSymbol" TargetType="TextBlock">
             <Setter Property="Foreground" Value="MediumTurquoise"/>
-            <Setter Property="Background" Value="White"/>
+            <Setter Property="Background" Value="Transparent"/>
             <Setter Property="FontWeight" Value="Normal"/>
         </Style>
 
 
-        <Style x:Key="MatchNormal" TargetType="TextBlock" PresentationOptions:Freeze="True">
-            <Setter Property="Foreground" Value="Black"/>
+        <Style x:Key="MatchNormal" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}"/>
         </Style>
 
-        <Style x:Key="MatchValue" TargetType="TextBlock" PresentationOptions:Freeze="True">
-            <Setter Property="Foreground" Value="Black"/>
+        <Style x:Key="MatchValue" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}"/>
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
 
         <Style x:Key="MatchValueSpecial" TargetType="TextBlock" PresentationOptions:Freeze="True">
-            <Setter Property="Foreground" Value="DarkCyan"/>
+            <Setter Property="Foreground" Value="#00AAAA"/>
             <Setter Property="FontWeight" Value="Normal"/>
         </Style>
 
-        <Style x:Key="MatchLocation" TargetType="TextBlock" PresentationOptions:Freeze="True">
-            <Setter Property="Foreground" Value="Gray"/>
+        <Style x:Key="MatchLocation" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource TextFillColorSecondaryBrush}"/>
             <Setter Property="FontSize" Value="11"/>
         </Style>
 
-        <Style x:Key="MatchGroupName" TargetType="TextBlock" PresentationOptions:Freeze="True">
-            <Setter Property="Foreground" Value="Gray"/>
+        <Style x:Key="MatchGroupName" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource TextFillColorSecondaryBrush}"/>
         </Style>
 
-        <Style x:Key="MatchGroupSiblingValue" TargetType="TextBlock" PresentationOptions:Freeze="True">
-            <Setter Property="Foreground" Value="Silver"/>
+        <Style x:Key="MatchGroupSiblingValue" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource TextFillColorTertiaryBrush}"/>
         </Style>
 
-        <Style x:Key="MatchGroupValue" TargetType="TextBlock" PresentationOptions:Freeze="True">
-            <Setter Property="Foreground" Value="Black"/>
+        <Style x:Key="MatchGroupValue" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}"/>
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
 
@@ -296,9 +296,9 @@
         </Style>
 
         
-        <Style x:Key="TextNormal" TargetType="TextBlock" PresentationOptions:Freeze="True">
-            <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="Background" Value="White"/>
+        <Style x:Key="TextNormal" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}"/>
+            <Setter Property="Background" Value="Transparent"/>
         </Style>
 
         <Style x:Key="MatchHighlight_0" TargetType="TextBlock" PresentationOptions:Freeze="True" >
