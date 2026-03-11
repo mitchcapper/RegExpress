@@ -1211,6 +1211,44 @@ namespace RegExpressWPFNET
             }
         }
 
+        private void ExplainPattern_Click( object sender, RoutedEventArgs e )
+        {
+            if( !IsFullyLoaded ) return;
+
+            var textData = ucPattern.GetTextData( "\n" );
+            var pattern = textData.Text ?? "";
+            
+            if( string.IsNullOrWhiteSpace( pattern ) )
+            {
+                MessageBox.Show( "Please enter a pattern first.", "No Pattern", MessageBoxButton.OK, MessageBoxImage.Information );
+                return;
+            }
+            var selection = textData.Selection;
+            var promptAdd = "";
+            if( selection.Start >= 0 && selection.Length > 1 && pattern.Length * 0.75 > selection.Length && selection.End < pattern.Length ) //If they have more than 75% of the pattern selected don't specify selection
+            {
+                promptAdd += @$" Especially around the part:
+```
+{pattern.Substring(selection.Start,selection.Length)}
+```
+";
+            }
+
+            var mainWindow = Window.GetWindow( this ) as MainWindow;
+            if( mainWindow != null )
+            {
+                // Expand AI panel if not already expanded
+                if( !mainWindow.ucAi.IsExpanded )
+                {
+                    mainWindow.ucAi.IsExpanded = true;
+                }
+
+                // Send message to AI
+                string message = $"Please provide a clear but concise explanation for the following pattern:\n\n```\n{pattern}\n```\n{promptAdd}";
+                _ = mainWindow.ucAi.SendMessage( message );
+            }
+        }
+
         private void ThemeToggleControl_ThemeChanged( object sender, WPFNativeThemeToggleControl.ThemeChangedEventArgs e )
         {
             if( !IsFullyLoaded ) return;

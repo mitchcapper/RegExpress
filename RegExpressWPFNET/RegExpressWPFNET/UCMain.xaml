@@ -48,6 +48,7 @@
                 <Grid>
                     <StackPanel Style="{StaticResource StackPanelWithLabels}" HorizontalAlignment="Left" >
                         <TextBlock Text="Pattern" Style="{StaticResource Labels}" VerticalAlignment="Center" />
+                        <Button Content="❓ Explain" Click="ExplainPattern_Click" ToolTip="Ask AI to explain this pattern" />
                     </StackPanel>
                     <TextBlock x:Name="lblPatternInfo" d:Text="Index: 8  |  Length: 30" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 9 1"
                                FontSize="9.25" Opacity="0.77" />
