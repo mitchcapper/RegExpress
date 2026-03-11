@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: windows-2025-vs2026
 
     steps:
       - name: Checkout repository
@@ -20,18 +20,54 @@ jobs:
         with:
           dotnet-version: '10.0.x'
 
-      - name: Restore dependencies
-        run: dotnet restore RegExpressWPFNET/RegExpressWPFNET.slnx
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+        with:
+            vs-prerelease: true
+            msbuild-architecture: x64
 
+      - name: Setup NuGet
+        uses: nuget/setup-nuget@v2
+
+      # Detect the installed MSVC toolset version so we can override the v145
+      # PlatformToolset in the vcxproj files if the runner has a different VS version.
+      - name: Detect C++ platform toolset
+        id: cpp-toolset
+        shell: pwsh
+        run: |
+          $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
+          $vsPath = & $vswhere -latest -property installationPath
+          $vcToolsDir = Join-Path $vsPath "VC\Tools\MSVC"
+          $latestMSVC = (Get-ChildItem $vcToolsDir -Directory | Sort-Object Name -Descending | Select-Object -First 1).Name
+          # Map MSVC version to PlatformToolset: 14.3x->v143, 14.4x->v144, 14.5x->v145
+          $toolset = "v" + $latestMSVC.Substring(0, 2) + $latestMSVC.Substring(3, 1)
+          Write-Host "Detected MSVC $latestMSVC -> PlatformToolset $toolset"
+          "toolset=$toolset" >> $env:GITHUB_OUTPUT
+
+      # Restore packages.config NuGet packages (WebView2Worker, DotNETFrameworkWorker).
+      - name: Restore NuGet packages
+        run: nuget restore RegExpressWPFNET/RegExpressWPFNET.slnx
+
+      # Build the full solution with MSBuild (handles both C++ and C# projects).
+      # The dotnet CLI cannot build .vcxproj projects — MSBuild from VS is required.
+      # /restore handles SDK-style NuGet restore for C# PackageReference projects.
       - name: Build solution
-        run: dotnet build RegExpressWPFNET/RegExpressWPFNET.slnx --configuration Release --no-restore
+        run: >
+          msbuild RegExpressWPFNET/RegExpressWPFNET.slnx
+          /p:Configuration=Release
+          /p:Platform=x64
+          /p:PlatformToolset=${{ steps.cpp-toolset.outputs.toolset }}
+          /restore
 
-      - name: Publish application
-        run: dotnet publish RegExpressWPFNET/RegExpressWPFNET/RegExpressWPFNET.csproj --configuration Release --output ./publish --no-build
+        # && vars.DEBUG_FAIL == '1'
+      - name: Debug Session
+        if: ${{ failure() && env.WLB_BUILD_TRACE == '1' }}
+        shell: pwsh
+        run: iex (irm "https://gist.github.com/mitchcapper/76dfddcd3950e3c1e57c1d0a46da1bc9/raw/debug_ssh_start.ps1")
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
           name: RegExpressWPFNET
-          path: ./publish
+          path: RegExpressWPFNET/RegExpressWPFNET/bin/Release/net10.0-windows/
           retention-days: 30

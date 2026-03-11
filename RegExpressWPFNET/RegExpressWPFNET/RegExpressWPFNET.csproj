@@ -21,11 +21,11 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="WPFNativeThemeToggleControl" Version="1.0.21" />
+      <PackageReference Include="PilotAIAssistantControlWPF" Version="1.0.4" />
+      <PackageReference Include="WPFNativeThemeToggleControl" Version="1.0.22" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\PilotAIAssistantControl\PilotAIAssistantControlWPF\PilotAIAssistantControlWPF.csproj" />
         <ProjectReference Include="..\RegExpressLibrary\RegExpressLibrary.csproj" />
     </ItemGroup>
 
