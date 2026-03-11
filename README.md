@@ -1,12 +1,16 @@
 ﻿# RegExpress
+[![Build](https://github.com/mitchcapper/RegExpress/actions/workflows/build.yml/badge.svg)](https://github.com/mitchcapper/RegExpress/actions/workflows/build.yml)
 
-A tester for researching Regular Expression engines. Made in Visual Studio 2026 using C#, C++, WPF, .NET 10.
+
+A comprehensive regular expression testing application with implementations of 25+ of the top Regex engines across dozens of languages.  Integrated (optional) AI assist for creating and understanding patterns.
+
+Made in Visual Studio 2026 using C#, C++, WPF, .NET 10.
 
 ## This Fork
 This fork of the original [RegExpress project](https://github.com/Viorel/RegExpress) includes several additional updates.  While I have submitted a PR for the several currently the original author [has commented](https://github.com/Viorel/RegExpress/pull/3#issuecomment-3702954971) they prefer to keep this separate.  This project has taken an enormous about of time and skill to create and the original author has done 99% of that amazing work.
 
 ### Enhancements to the original project
-* **AI Assistant Pane** - Integrated AI companion with "Explain Pattern" button. Supports GitHub Copilot (auto-discovers VS Code tokens), OpenAI, Google Gemini, Anthropic Claude, and custom/local endpoints like Ollama.
+* **AI Assistant Pane** - Integrated AI companion throuhg [PilotAIAssistantControl](https://github.com/MitchCapper/PilotAIAssistantControl) that can both generate and explain patterns. Supports GitHub Copilot (auto-discovers VS Code tokens), OpenAI, Google Gemini, Anthropic Claude, and custom/local endpoints like Ollama.
 * **Fluent Theme** - Modern .NET fluent theme styling with proper DPI awareness.
 * **Dark Mode Support** - Full dark mode theming that respects system preferences or can be manually controlled.
 * **Inspect Capture/Group** - Right-click a match to inspect captures and groups in a new tab.
@@ -17,28 +21,30 @@ This fork of the original [RegExpress project](https://github.com/Viorel/RegExpr
 ## Regex Engines
 It includes the following Regular Expression engines:
 
-* **[Regex](https://learn.microsoft.com/en-us/dotnet/api/system.text.regularexpressions.regex?view=net-10.0)** class from .NET 10 (Modern).
-* **[Regex](https://learn.microsoft.com/en-us/dotnet/api/system.text.regularexpressions.regex?view=netframework-4.8)** class from .NET Framework 4.8.
-* **[wregex](https://docs.microsoft.com/en-us/cpp/standard-library/regex)** class from C++ Standard Template Library (MSVC
-  and GCC) and the [SRELL](https://www.akenotsuki.com/misc/srell/en/) variation.
+* **[C# Regex](https://learn.microsoft.com/en-us/dotnet/api/system.text.regularexpressions.regex?view=net-10.0)** class from .NET 10 (Modern).
+* **[C# Regex](https://learn.microsoft.com/en-us/dotnet/api/system.text.regularexpressions.regex?view=netframework-4.8)** class from .NET Framework 4.8.
+* **[wregex](https://docs.microsoft.com/en-us/cpp/standard-library/regex)** class from C++ Standard Template Library (MSVC and GCC) and the [SRELL](https://www.akenotsuki.com/misc/srell/en/) variation.
 * **[Boost.Regex](https://www.boost.org/doc/libs/1_89_0/libs/regex/doc/html/index.html)** from Boost C++ Libraries 1.89.0.
 * **[PCRE2](https://github.com/PCRE2Project/pcre2)** Open Source Regex Library 10.47 (in C).
 * **[RE2](https://github.com/google/re2)** Library 2025-08-12 from Google (in C++).
 * **[Oniguruma](https://github.com/kkos/oniguruma)** Regular Expression Library 6.9.10 (in C++).
 * **[SubReg](https://github.com/mattbucknall/subreg)** 2024-08-11 (in C).
-* **JavaScript [RegExp](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp)** object
-  in Microsoft Edge [WebView2](https://docs.microsoft.com/en-us/microsoft-edge/webview2/),
-  V8 \(via [Node.js](https://nodejs.org)\) 14.1.146,
-  [QuickJs](https://bellard.org/quickjs/) 2025-09-13,
-  [SpiderMonkey](https://spidermonkey.dev/) C145.0,
-  JavaScriptCore (via [Bun 1.3.1](https://bun.sh/)[^1])
-  and [RE2JS](https://github.com/le0pard/re2js) 1.2.0.
+* **JavaScript [RegExp](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp)** object with the following backing engines:
+  * Microsoft Edge [WebView2](https://docs.microsoft.com/en-us/microsoft-edge/webview2/)
+  * V8 (via [Node.js](https://nodejs.org)) 14.1.146
+  * [QuickJs](https://bellard.org/quickjs/) 2025-09-13
+  * [SpiderMonkey](https://spidermonkey.dev/) C145.0
+  * JavaScriptCore (via [Bun 1.3.1](https://bun.sh/)[^1])
+  * [RE2JS](https://github.com/le0pard/re2js) 1.2.0
 * **VBScript [RegExp](https://learn.microsoft.com/en-us/previous-versions/yab2dx62(v=vs.85))** object used in Access, Excel, Word.
 * **[Hyperscan](https://github.com/intel/hyperscan)** 5.4.2 from Intel (in C).
 * **[Chimera](http://intel.github.io/hyperscan/dev-reference/chimera.html)**, a hybrid of Hyperscan 5.4.2 and PCRE 8.41 (in C).
 * **[ICU Regular Expressions](https://icu.unicode.org/)** 77.1 (in C++).
-* **Rust** 1.90.0 crates: **[regex](https://docs.rs/regex)** 1.12.2, **[regex\_lite](https://docs.rs/regex_lite)** 0.1.8, **[fancy\_regex](https://docs.rs/fancy-regex)** 0.16.2
-  and **[regress](https://docs.rs/regress)** 0.10.4.
+* **Rust** 1.90.0 crates:
+  * [regex](https://docs.rs/regex) ** 1.12.2
+  * [regex\_lite](https://docs.rs/regex_lite)** 0.1.8
+  * [fancy\_regex](https://docs.rs/fancy-regex)** 0.16.2
+  * [regress](https://docs.rs/regress)** 0.10.4.
 * **[Java](https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/regex/package-summary.html)** 24.0.1 (*java.util.regex* and *com.google.re2j* packages).
 * **[Python](https://www.python.org/)** 3.13.6 (standard *re* module, third-party *regex* module).
 * **[D](https://dlang.org/phobos/std_regex.html)** 2.111.0 (*std.regex* module).
