@@ -1,12 +1,25 @@
 ﻿# RegExpress
 
-A tester for researching Regular Expression engines. Made in Visual Studio 2026 using C#, C++, WPF, .NET 9.
+A tester for researching Regular Expression engines. Made in Visual Studio 2026 using C#, C++, WPF, .NET 10.
 
+## This Fork
+This fork of the original [RegExpress project](https://github.com/Viorel/RegExpress) includes several additional updates.  While I have submitted a PR for the several currently the original author [has commented](https://github.com/Viorel/RegExpress/pull/3#issuecomment-3702954971) they prefer to keep this separate.  This project has taken an enormous about of time and skill to create and the original author has done 99% of that amazing work.
+
+### Enhancements to the original project
+* **AI Assistant Pane** - Integrated AI companion with "Explain Pattern" button. Supports GitHub Copilot (auto-discovers VS Code tokens), OpenAI, Google Gemini, Anthropic Claude, and custom/local endpoints like Ollama.
+* **Fluent Theme** - Modern .NET fluent theme styling with proper DPI awareness.
+* **Dark Mode Support** - Full dark mode theming that respects system preferences or can be manually controlled.
+* **Inspect Capture/Group** - Right-click a match to inspect captures and groups in a new tab.
+* **HtmlAgilityPack Engine** - Added XPath and CSS selector support for HTML parsing.
+
+
+
+## Regex Engines
 It includes the following Regular Expression engines:
 
-* **[Regex](https://learn.microsoft.com/en-us/dotnet/api/system.text.regularexpressions.regex?view=net-9.0)** class from .NET 9.
+* **[Regex](https://learn.microsoft.com/en-us/dotnet/api/system.text.regularexpressions.regex?view=net-10.0)** class from .NET 10 (Modern).
 * **[Regex](https://learn.microsoft.com/en-us/dotnet/api/system.text.regularexpressions.regex?view=netframework-4.8)** class from .NET Framework 4.8.
-* **[wregex](https://docs.microsoft.com/en-us/cpp/standard-library/regex)** class from C++ Standard Template Library (MSVC 
+* **[wregex](https://docs.microsoft.com/en-us/cpp/standard-library/regex)** class from C++ Standard Template Library (MSVC
   and GCC) and the [SRELL](https://www.akenotsuki.com/misc/srell/en/) variation.
 * **[Boost.Regex](https://www.boost.org/doc/libs/1_89_0/libs/regex/doc/html/index.html)** from Boost C++ Libraries 1.89.0.
 * **[PCRE2](https://github.com/PCRE2Project/pcre2)** Open Source Regex Library 10.47 (in C).
@@ -14,7 +27,7 @@ It includes the following Regular Expression engines:
 * **[Oniguruma](https://github.com/kkos/oniguruma)** Regular Expression Library 6.9.10 (in C++).
 * **[SubReg](https://github.com/mattbucknall/subreg)** 2024-08-11 (in C).
 * **JavaScript [RegExp](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp)** object
-  in Microsoft Edge [WebView2](https://docs.microsoft.com/en-us/microsoft-edge/webview2/), 
+  in Microsoft Edge [WebView2](https://docs.microsoft.com/en-us/microsoft-edge/webview2/),
   V8 \(via [Node.js](https://nodejs.org)\) 14.1.146,
   [QuickJs](https://bellard.org/quickjs/) 2025-09-13,
   [SpiderMonkey](https://spidermonkey.dev/) C145.0,
@@ -24,7 +37,7 @@ It includes the following Regular Expression engines:
 * **[Hyperscan](https://github.com/intel/hyperscan)** 5.4.2 from Intel (in C).
 * **[Chimera](http://intel.github.io/hyperscan/dev-reference/chimera.html)**, a hybrid of Hyperscan 5.4.2 and PCRE 8.41 (in C).
 * **[ICU Regular Expressions](https://icu.unicode.org/)** 77.1 (in C++).
-* **Rust** 1.90.0 crates: **[regex](https://docs.rs/regex)** 1.12.2, **[regex\_lite](https://docs.rs/regex_lite)** 0.1.8, **[fancy\_regex](https://docs.rs/fancy-regex)** 0.16.2 
+* **Rust** 1.90.0 crates: **[regex](https://docs.rs/regex)** 1.12.2, **[regex\_lite](https://docs.rs/regex_lite)** 0.1.8, **[fancy\_regex](https://docs.rs/fancy-regex)** 0.16.2
   and **[regress](https://docs.rs/regress)** 0.10.4.
 * **[Java](https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/regex/package-summary.html)** 24.0.1 (*java.util.regex* and *com.google.re2j* packages).
 * **[Python](https://www.python.org/)** 3.13.6 (standard *re* module, third-party *regex* module).
@@ -37,6 +50,7 @@ It includes the following Regular Expression engines:
 * **[TRegEx](https://docwiki.embarcadero.com/Libraries/Florence/en/System.RegularExpressions)** 29.0 (C++Builder, Delphi).
 * **[QRegularExpression](https://doc.qt.io/qt-6/qregularexpression.html)** class (based on PCRE2) from Qt 6.9.3 (in C++).
 * **[compile-time-regular-expressions (CTRE)](https://github.com/hanickadot/compile-time-regular-expressions)**[^2] 3.10.0  (in C++).
+* **[HtmlAgilityPack](https://html-agility-pack.net/)** - HTML parser with **XPath** and **CSS Selector** modes for querying HTML documents.
 
 <br/>
 
@@ -44,13 +58,21 @@ Sample:
 
 ![Screenshot of RegExpress](Screenshot1.png)
 
+<details>
+<summary><h3>📺 Click to View Dark Mode Screenshot with AI</h3></summary>
+
+![Dark Mode with AI Panel](ScreenshotDarkmodeWithAI.png)
+
+</details>
+
+
 Enter the pattern and text to textboxes. The results are updated automatically. The found matches are colourised.
 
-Use the **Options** area to select and configure the Regular Expression engine. Press the “➕” button to open more tabs. 
+Use the **Options** area to select and configure the Regular Expression engine. Press the “➕” button to open more tabs.
 
 Currently the regular expressions are saved and loaded automatically, and a single instance can be started.
 
-The program can be built using Visual Studio 2026 or Visual Studio 2022 and .NET 9. The following Visual Studio workloads are required:
+The program can be built using Visual Studio 2026 or Visual Studio 2022 and .NET 10. The following Visual Studio workloads are required:
 
 * .NET desktop development.
 * Desktop development with C++.
@@ -60,6 +82,20 @@ and select “Set as Startup Project”. Select “Rebuild Solution” from BUIL
 
 The sources are written in C# and C++. The minimal sources of third-party regular expression libraries are included.
 
+## AI Assistant
+This tool has a new AI Panel that by default is collapsed and takes up minimal space.  If users want AI assistance with regexs (generating patterns, explaining patterns, suggesting improvements, etc.) they can expand the AI Panel and click the "Explain" button to get an AI-powered explanation of their regex pattern.
+
+* **Explain Pattern** - Click the "Explain" button to get an AI-powered explanation of your regex pattern
+* **Multiple Providers** - Configure your preferred AI provider:
+  * **GitHub Copilot** - Auto-discovers tokens from VS Code installation
+  * **OpenAI** - GPT models via API
+  * **Google Gemini** - Gemini models via API
+  * **Anthropic** - Claude models via API
+  * **Custom/Local** - Connect to local endpoints like Ollama
+
+To configure, click the settings icon in the AI pane and enter your API credentials or endpoint URL. The AI assistant can also apply suggested pattern changes directly to your regex while preserving your undo buffer.
+
+
 #### Details
 
 * Principal GIT branch: **main**.
@@ -68,11 +104,11 @@ The sources are written in C# and C++. The minimal sources of third-party regula
 * Configurations: **“Debug, Any CPU”** or **“Release, Any CPU”**. The C++ projects use **“x64”**.
 * Operating Systems: **Windows 11**, **Windows 10**.
 
-Some of engines require certain third-party library files, which were downloaded or compiled separately 
+Some of engines require certain third-party library files, which were downloaded or compiled separately
 and included into **main** branch. (No additional installations required).
 
 > [!NOTE]
-> After loading the solution file in Visual Studio, make sure that 
+> After loading the solution file in Visual Studio, make sure that
 > the **RegExpressWPFNET** project is set as Startup Project.
 
 > [!NOTE]
@@ -137,7 +173,7 @@ Download and open the file:
     * Fortran: **Forgex**
     * **TRE**
     * **tiny-regex-c**
-    * **wregex** (GCC with polynomial option set, without back-references) 
+    * **wregex** (GCC with polynomial option set, without back-references)
     * **TRegEx**
     * **Qt**
     * **CTRE**

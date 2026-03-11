@@ -16,11 +16,7 @@
                 <Run.Style>
                     <Style TargetType="Run">
                         <Setter Property="Text" Value="{Binding Note, Mode=OneWay, FallbackValue='', StringFormat=' – {0}'}"/>
-                        <Setter Property="Foreground">
-                            <Setter.Value>
-                                <SolidColorBrush Opacity="0.77" Color="{x:Static SystemColors.ControlTextColor}"/>
-                            </Setter.Value>
-                        </Setter>
+                        <Setter Property="Foreground" Value="{DynamicResource TextFillColorSecondaryBrush}"/>
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding Note, Mode=OneWay}" Value="">
                                 <Setter Property="Text" Value=""/>
